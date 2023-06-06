@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bonocan (ICT Assignment)</title>
+</head>
+<style>
+body {
+    align-items: center;
+    background-color: #0B2447;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+}
+
+.form {
+    background-color: #5B8FB9;
+    border-radius: 20px;
+    box-sizing: border-box;
+    height: 500px;
+    padding: 20px;
+    width: 320px;
+}
+
+.title {
+    color: #ECE8DD;
+    font-family: Lucida Handwriting;
+    font-size: 25px;
+    font-weight: 600;
+    margin-top: 30px;
+}
+
+.subtitle {
+    color: #0B2447;
+    font-family: Lucida Console;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.input-container {
+    height: 50px;
+    position: relative;
+    width: 100%;
+}
+
+.ic1 {
+    margin-top: 40px;
+}
+
+.ic2 {
+    margin-top: 30px;
+}
+
+.input {
+    background-color: #ECE8DD;
+    border-radius: 12px;
+    border: 0;
+    box-sizing: border-box;
+    color: #0B2447;
+    font-size: 18px;
+    height: 100%;
+    outline: 0;
+    padding: 4px 20px 0;
+    width: 100%;
+}
+
+.cut {
+    background-color: #5B8FB9;
+    border-radius: 10px;
+    height: 20px;
+    left: 20px;
+    position: absolute;
+    top: -20px;
+    transform: translateY(0);
+    transition: transform 200ms;
+    width: 100px;
+}
+
+.cut-short {
+    width: 50px;
+}
+
+.input:focus ~ .cut,
+.input:not(:placeholder-shown) ~ .cut {
+    transform: translateY(8px);
+}
+
+.placeholder {
+    color: #0B2447;
+    font-family: Lucida Console;
+    left: 20px;
+    line-height: 14px;
+    pointer-events: none;
+    position: absolute;
+    transform-origin: 0 50%;
+    transition: transform 200ms, color 200ms;
+    top: 20px;
+}
+
+.input:focus ~ .placeholder,
+.input:not(:placeholder-shown) ~ .placeholder {
+    transform: translateY(-30px) translateX(10px) scale(0.75);
+}
+
+.input:not(:placeholder-shown) ~ .placeholder {
+    color: #ECE8DD;
+}
+
+.input:focus ~ .placeholder {
+    color: #0B2447;
+}
+
+.submit {
+    background-color: #ECE8DD;
+    border-radius: 12px;
+    border: 0;
+    box-sizing: border-box;
+    color: #0B2447;
+    cursor: pointer;
+    font-size: 18px;
+    height: 50px;
+    margin-top: 38px;
+    outline: 0;
+    text-align: center;
+    width: 100%;
+}
+
+.submit:active {
+    background-color: #ECE8DD;
+}
+</style>
+<body>
+    <div class="form">
+        <div class="title" style="text-align: center;">Sum Of A Range</div>
+            <div class="input-container ic1">
+                <input id="first_digit" class="input" type="text" placeholder=" " />
+            <div class="cut"></div>
+        <label for="first_digit" class="placeholder">Start Number</label>
+        </div>
+      <div class="input-container ic2">
+        <input id="last_digit" class="input" type="text" placeholder=" " />
+        <div class="cut"></div>
+        <label for="last_digit" class="placeholder">End Number</label>
+      </div>
+        <button type="text" class="submit" onclick="getValue()">Calculate</button>
+    <br>
+    <br>
+        <span id="result" style="font-family: Lucida Console; text-align: center; color: #ECE8DD; font-weight: 700; font-size: 20px; height: 20px;"></span>
+    </div>
+</body>
+
+<script>
+
+    generateSum = (start, last) => {
+        var sum = 0;
+
+        for (var i = start ; i <= last; i++) {
+            sum += i;
+        }
+        return sum;
+    }
+
+    getValue = () => {
+        var first_digit = document.getElementById("first_digit").value;
+        var last_digit = document.getElementById("last_digit").value;
+        var resultElement = document.getElementById("result");
+
+        const result = generateSum(parseInt(first_digit),parseInt(last_digit))
+        resultElement.innerHTML = `Result:  ${result}`;
+    }
+</script>
+
+</html>
